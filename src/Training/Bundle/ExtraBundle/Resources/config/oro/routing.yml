@@ -1,0 +1,6 @@
+training_extra_bundle_product:
+    resource:     "@TrainingExtraBundle/Controller/Frontend/ProductController.php"
+    type:         annotation
+    prefix:       /extra/product
+    options:
+        frontend: true
