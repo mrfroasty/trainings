@@ -1,5 +1,5 @@
 docker build -t registry.madia.nl/oroinc/training \
---build-arg GITHUB_OAUTH_TOKEN=cb6ddfa7846e1d42ff06f222fcca34376545c95d \
+--build-arg GITHUB_OAUTH_TOKEN=$GITHUB_OAUTH_TOKEN \
 --build-arg COMPOSER_HOME=/home/application/.composer \
 --build-arg CURRENT_USER=application \
 --build-arg APP_ROOT=/app .
