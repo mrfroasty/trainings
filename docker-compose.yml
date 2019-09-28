@@ -1,0 +1,83 @@
+version: "2"
+services:
+#    db:
+#      image: postgres:latest
+#      restart: always
+#      environment:
+#        POSTGRES_PASSWORD: $DB_PASSWORD
+#
+#    adminer:
+#      image: adminer
+#      restart: always
+#      ports:
+#        - 8080:8080
+
+    db:
+      image: 'bitnami/mariadb:latest'
+      environment:
+        - ALLOW_EMPTY_PASSWORD=yes
+        - MARIADB_USER=$DB_USER
+        - MARIADB_PASSWORD=$DB_PASSWORD
+        - MARIADB_DATABASE=$DB_NAME
+      volumes:
+        - 'mariadb_data:/bitnami'
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "${PORT_PREFIX}${PORT_MYADMIN}:80"
+        links:
+            - db
+        environment:
+            - PMA_HOST=db
+
+    mailhog:
+      image: mailhog/mailhog
+      ports:
+        - "8025:8025"
+        - '1025:1025'
+    web:
+      image: registry.madia.nl/oroinc/training:latest
+      links:
+          - "db"
+          - "mailhog"
+#      group_add:
+#        - application
+#      user: application
+      ports:
+          - ${PORT_PREFIX}${PORT_HTTP}:80
+      volumes_from:
+          - appdata
+      environment:
+          - APP_ROOT=/app
+          - COMPOSER_HOME=/home/application/.composer
+          - SYMFONY_ENV=dev
+          - SYMFONY_DEBUG=1
+          - HOST_IP_ADDRESS=$HOST_IP_ADDRESS
+          - PHP_IDE_CONFIG=serverName=PHPSTORM
+          - XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9000 remote_host=$HOST_IP_ADDRESS remote_connect_back=0 idekey=PHPSTORM profiler_enable=1"
+          - DB_NAME=$DB_NAME
+          - DB_HOST=$DB_HOST
+          - DB_USER=root
+          - DB_PASSWORD=$DB_PASSWORD
+          - BASE_URL=http://0.0.0.0:${PORT_PREFIX}${PORT_HTTP}/
+          - DEPLOY_PATH=/app
+          - CURRENT_PATH=/app
+          - RELEASE_PATH=/app
+          - MAGE_MODE=developer
+          - HTTP_USER=application
+          - CURRENT_USER=application
+          - DEV_STAGE_ENV=dev
+    appdata:
+        image: tianon/true
+        volumes:
+            - app-cache:/app/var/cache:cached
+            - orotraining-unison-sync:/app:nocopy # will be mounted on /app
+
+volumes:
+    app-cache:
+      external: true
+    mariadb_data:
+      driver: local
+    orotraining-unison-sync:
+      external: true

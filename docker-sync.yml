@@ -1,0 +1,41 @@
+version: "2"
+
+options:
+  verbose: true
+  max-attempt: 30
+syncs:
+  orotraining-unison-sync:
+    src: './'
+    sync_strategy: 'unison'
+    sync_excludes: [
+    'var/cache',
+    'var/attachment',
+    'var/import_export',
+    'var/sessions',
+    '.git',
+    '.gitignore',
+    '.idea',
+    'vendor/oro/platform/build/node_modules',
+    'public/css',
+    'public/js',
+    'public/media',
+    'public/bundles',
+    'public/uploads'
+    ]
+    watch_excludes: [
+    'var/',
+    'public/',
+    '.git',
+    'node_modules',
+    'bower_components',
+    'coffee',
+    '.scss',
+    '.sass',
+    '.gitignore',
+    '.idea',
+    'vendor/'
+    ]
+    watch: false
+    watch_args: '-v'
+    sync_host_ip: 'auto'
+    sync_userid: '1000'
