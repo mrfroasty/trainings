@@ -1,0 +1,6 @@
+services:
+    Training\Bundle\UserNamingBundle\Command\Debug:
+        public: false
+        class: Training\Bundle\UserNamingBundle\Command\Debug
+        tags:
+            - { name: console.command }

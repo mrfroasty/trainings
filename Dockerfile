@@ -61,6 +61,8 @@ RUN chown -R application:application $COMPOSER_HOME $APP_ROOT
 ##COPY
 COPY .docker/conf/nginx/vhost.conf /opt/docker/etc/nginx/vhost.conf
 COPY .docker/conf/nginx/oro-location.conf /opt/docker/etc/nginx/vhost.common.d/10-location-root.conf
-COPY .docker/conf/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY .docker/conf/supervisor/consumer.conf /opt/docker/etc/supervisor.d/consumer.conf
 COPY .docker/conf/opt/docker/provision/entrypoint.d/05-permissions.sh /opt/docker/provision/entrypoint.d/05-permissions.sh
+#add xdebug enable disable
+COPY .docker/conf/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+COPY .docker/conf/scripts/* /usr/local/bin/
