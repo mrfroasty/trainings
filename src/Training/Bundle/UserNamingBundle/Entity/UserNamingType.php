@@ -26,7 +26,12 @@ use Training\Bundle\UserNamingBundle\Model\ExtendedUserNamingType;
  *          },
  *          "grid"={
  *              "default"="training-user-naming-types-grid"
- *          }
+ *          },
+ *          "security"={
+ *              "type"="ACL",
+ *              "group_name"="",
+ *              "category"="training_usernaming"
+ *          },
  *      }
  * )
  * @package Training\Bundle\UserNamingBundle\Entity

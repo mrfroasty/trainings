@@ -2,13 +2,15 @@ oro.user:
   usernaming_type.label: 'User Naming Type'
 training:
   usernaming:
+    sections.related_users: 'Related Users'
+    sections.general: 'General'
     full_formatted_name: 'Full Formatted Name'
     full_formatted_name_example: 'Formatted Name Example'
     usernamingtype:
       entity_label: 'User Naming Type'
-      format:
-        label: 'User Naming Type'
-      id:
-        label: 'ID'
-      title:
-        label: 'Title'
+      entity_plural_label: 'User Naming Type'
+      format.lable: 'User Naming Type'
+      format.label: 'User Naming Type'
+      id.lable: 'ID'
+      title.lable: 'Title'
+      title.label: 'Title'

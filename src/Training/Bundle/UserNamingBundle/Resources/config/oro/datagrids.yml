@@ -1,0 +1,65 @@
+datagrids:
+  users-naming-type-grid:
+      extended_entity_name: '%training_usernaming.entity.class%'
+      acl_resource: training_user_naming_view
+      source:
+          type: orm
+          query:
+              select:
+                - u.id
+                - u.title
+                - u.format
+              from:
+                - { table: '%training_usernaming.entity.class%', alias: u }
+          hints:
+            - HINT_TRANSLATABLE
+      inline_editing:
+          enable: true
+      columns:
+          id:
+              label:         training.usernaming.usernamingtype.id.lable
+          title:
+              label:         training.usernaming.usernamingtype.title.lable
+          format:
+              label:         training.usernaming.usernamingtype.format.lable
+
+      properties:
+          id: ~
+          view_link:
+              type: url
+              route: training_user_naming_view
+              params:     [ id ]
+
+      actions:
+          view:
+              type:          navigate
+              label:         'oro.grid.action.view'
+              icon:          eye
+              link:          view_link
+              acl_resource:  training_user_naming_view
+              rowAction:     true
+
+  training-related-users-by-naming-type:
+    acl_resource: oro_user_user_view
+    source:
+      type: orm
+      query:
+        select:
+          - user.username
+          - user.firstName
+          - user.lastName
+        from:
+          - { table: 'Oro\Bundle\UserBundle\Entity\User', alias: user }
+        where:
+          and:
+            - user.usernaming_type = :namingTypeId
+      bind_parameters:
+        -
+          name: namingTypeId
+    columns:
+      username:
+        label: 'oro.user.username.label'
+      firstName:
+        label: 'oro.user.first_name.label'
+      lastName:
+        label: 'oro.user.last_name.label'

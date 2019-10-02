@@ -1,3 +1,5 @@
+parameters:
+  training_usernaming.entity.class: Training\Bundle\UserNamingBundle\Entity\UserNamingType
 services:
   _defaults:
     autowire: true

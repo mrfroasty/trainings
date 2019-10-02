@@ -43,3 +43,8 @@ OnbuildAFter or grid events are being used in the frontend to add prices etc.
 
 ###Validation
 - SF validation constrains   
+
+
+
+### Locating Resources:
+
