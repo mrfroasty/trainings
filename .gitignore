@@ -48,3 +48,6 @@ bin/*
 # DO NOT DO THIS FOR REAL PROJECTS. IT'S HERE JUST FOR TRAINING PURPOSE !!
 !var/oauth_private.key
 !var/oauth_public.key
+
+#dev
+.php_cs.cache

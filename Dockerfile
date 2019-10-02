@@ -66,3 +66,4 @@ COPY .docker/conf/opt/docker/provision/entrypoint.d/05-permissions.sh /opt/docke
 #add xdebug enable disable
 COPY .docker/conf/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 COPY .docker/conf/scripts/* /usr/local/bin/
+COPY .docker/conf/php/php.ini /usr/local/etc/php/conf.d/php.ini

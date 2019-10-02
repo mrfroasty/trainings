@@ -1,0 +1,14 @@
+oro.user:
+  usernaming_type.label: 'User Naming Type'
+training:
+  usernaming:
+    full_formatted_name: 'Full Formatted Name'
+    full_formatted_name_example: 'Formatted Name Example'
+    usernamingtype:
+      entity_label: 'User Naming Type'
+      format:
+        label: 'User Naming Type'
+      id:
+        label: 'ID'
+      title:
+        label: 'Title'
