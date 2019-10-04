@@ -10,7 +10,7 @@ syncs:
     sync_excludes: [
     'var/cache',
     'var/attachment',
-    'var/import_export',
+#    'var/import_export',
     'var/sessions',
     '.git',
     '.gitignore',

@@ -48,3 +48,21 @@ OnbuildAFter or grid events are being used in the frontend to add prices etc.
 
 ### Locating Resources:
 
+
+## ImportProcessor:
+
+Deserialize -> convert data into object
+
+## ExportProcessor:
+
+Serialize -> convert object into array data
+
+
+###Alternative is to use DBAL instead of ORM
+
+
+
+##php -dmemory_limit=-1 ./bin/console oro:platform:update --symlink --force --skip-translations --skip-download-translations --skip-search-reindexation  -vvv
+
+
+###currency -> table config

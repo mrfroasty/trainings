@@ -1,0 +1,16 @@
+workflows:
+  user_flow:
+    steps:
+      name_not_initilized:
+        order: 10
+        allowed_transitions:
+          - set_name_parts
+      name_parts_set:
+        order: 20
+        allowed_transitions:
+          - set_name_format
+          - re_initialize_name
+      name_format_set:
+        order: 30
+        allowed_transitions:
+          - re_initialize_name

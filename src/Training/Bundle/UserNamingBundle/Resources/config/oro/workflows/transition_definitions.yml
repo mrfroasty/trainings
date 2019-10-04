@@ -1,0 +1,6 @@
+workflows:
+    user_flow:
+        transition_definitions:
+            set_name_parts_definition:
+            set_name_format_definition:
+            re_initialize_name_definition:

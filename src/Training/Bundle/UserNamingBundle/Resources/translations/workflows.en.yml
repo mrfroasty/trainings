@@ -1,0 +1,11 @@
+oro:
+  workflow:
+    user_flow:
+      transition:
+        set_name_parts.label: 'Set Name Parts'
+        set_name_format.label: 'Set Fromat Parts'
+        re_initialize_name.label: 'Re-initilize name'
+      step:
+        name_parts_set.label: 'Name part set'
+        name_format_set.label: 'Name format set'
+        name_not_initilized.label: 'Name not initialized'

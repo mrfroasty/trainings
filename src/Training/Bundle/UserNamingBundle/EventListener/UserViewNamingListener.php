@@ -5,18 +5,20 @@ namespace Training\Bundle\UserNamingBundle\EventListener;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 use Oro\Bundle\UIBundle\Event\BeforeListRenderEvent;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class UserViewNamingListener
 {
-    /** @var ManagerRegistry */
-    private $registry;
+    /** @var AuthorizationCheckerInterface */
+    private $authorizationChecker;
 
     /**
-     * @param ManagerRegistry $registry
+     * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(ManagerRegistry $registry)
-    {
-        $this->registry = $registry;
+    public function __construct(
+        AuthorizationCheckerInterface $authorizationChecker
+    ){
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -24,6 +26,10 @@ class UserViewNamingListener
      */
     public function onUserView(BeforeListRenderEvent $event)
     {
+        if (!$this->authorizationChecker->isGranted('training_user_naming_info')) {
+            return;
+        }
+
         $user = $event->getEntity();
         if (!$user) {
             return;

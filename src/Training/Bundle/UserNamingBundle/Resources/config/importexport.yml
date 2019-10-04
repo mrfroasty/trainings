@@ -1,0 +1,21 @@
+parameters:
+
+services:
+  training_user_naming.importexport.processor.import.add_or_replace:
+    parent: oro_importexport.processor.import_abstract
+    tags:
+      - { name: oro_importexport.processor, type: import, entity: '%training_usernaming.entity.class%', alias: training_user_naming_type }
+      - { name: oro_importexport.processor, type: import_validation, entity: '%training_usernaming.entity.class%', alias: training_user_naming_type }
+
+  # Export processor
+  training_user_naming.importexport.processor.export:
+    parent: oro_importexport.processor.export_abstract
+    tags:
+      - { name: oro_importexport.processor, type: export, entity: '%training_usernaming.entity.class%', alias: training_user_naming_type }
+
+  training_user_naming.importexport.configuration_provider.user_naming_type:
+    class: 'Training\Bundle\UserNamingBundle\ImportExport\Configuration\UserNamingTypeImportExportConfigurationProvider'
+    arguments:
+      - '@translator'
+    tags:
+      - { name: oro_importexport.configuration, alias: training_user_naming_type }

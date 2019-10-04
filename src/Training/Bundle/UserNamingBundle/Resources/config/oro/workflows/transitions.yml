@@ -1,0 +1,18 @@
+workflows:
+    user_flow:
+        transitions:
+            set_name_parts:
+                step_to: name_parts_set
+                frontend_options:
+                    icon: 'fa-play'
+                transition_definition: set_name_parts_definition
+            set_name_format:
+                step_to: name_format_set
+                frontend_options:
+                    icon: 'fa-stop'
+                transition_definition: set_name_format_definition
+            re_initialize_name:
+                    step_to: name_not_initilized
+                    frontend_options:
+                        icon: 'fa-pencil-square-o'
+                    transition_definition: re_initialize_name_definition

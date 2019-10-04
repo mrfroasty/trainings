@@ -1,0 +1,13 @@
+imports:
+  - { resource: 'workflows/steps.yml' }
+  - { resource: 'workflows/transitions.yml' }
+  - { resource: 'workflows/transition_definitions.yml' }
+
+workflows:
+  user_flow:
+    entity: Oro\Bundle\UserBundle\Entity\User
+    entity_attribute: user
+    start_step: name_not_initilized
+
+    defaults:
+      active: true

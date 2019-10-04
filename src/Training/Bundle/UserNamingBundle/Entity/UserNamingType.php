@@ -45,11 +45,11 @@ class UserNamingType extends ExtendedUserNamingType
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ConfigField(
-     *  defaultValues={
-     *      "importexport"={
-     *          "order"=0
+     *      defaultValues={
+     *          "importexport"={
+     *              "order"=10
+     *          }
      *      }
-     *  }
      * )
      */
     protected $id;
@@ -57,12 +57,27 @@ class UserNamingType extends ExtendedUserNamingType
     /**
      * @var string
      * @ORM\Column(name="title", type="string", length=64)
+     * @ConfigField(
+     *      defaultValues={
+     *          "importexport"={
+     *              "order"=20
+     *          }
+     *      }
+     * )
      */
     protected $title;
 
     /**
      * @var string
      * @ORM\Column(name="format", type="string", length=255, nullable=false)
+     * @ConfigField(
+     *      defaultValues={
+     *          "importexport"={
+     *              "identity"=true,
+     *              "order"=30
+     *          }
+     *      }
+     * )
      */
     protected $format;
 
