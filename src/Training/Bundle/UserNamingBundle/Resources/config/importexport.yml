@@ -19,3 +19,9 @@ services:
       - '@translator'
     tags:
       - { name: oro_importexport.configuration, alias: training_user_naming_type }
+
+  # Integration type
+  training_user_naming.provider.channel_type:
+    class: 'Training\Bundle\UserNamingBundle\Provider\ChannelType'
+    tags:
+      - { name: oro_integration.channel, type: training_user_naming }

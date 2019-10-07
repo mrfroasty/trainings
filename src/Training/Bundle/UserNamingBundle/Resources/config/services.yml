@@ -1,6 +1,7 @@
 parameters:
   training_usernaming.entity.class: Training\Bundle\UserNamingBundle\Entity\UserNamingType
 services:
+  # auto wiring
   _defaults:
     autowire: true
     autoconfigure: true
@@ -22,3 +23,33 @@ services:
   # ORO services. We need to alias them in order to properly autowire dependencies for our new services
   #verify ./bin/console debug:container 'Oro\Bundle\LocaleBundle\Provider\EntityNameProvider' -vvv
   Oro\Bundle\LocaleBundle\Provider\EntityNameProvider: '@oro_locale.entity_name_provider'
+  Oro\Component\MessageQueue\Client\MessageProducerInterface: '@oro_message_queue.client.message_producer'
+  Doctrine\ORM\EntityManager: '@doctrine.orm.entity_manager'
+
+  # Forms and extensions
+  training_user_naming.form.type.transport_setting:
+    class: 'Training\Bundle\UserNamingBundle\Form\Type\TransportSettingsFormType'
+    tags:
+      - { name: form.type, alias: training_user_naming_type_transport_setting_form_type }
+
+  training_user_naming.form.extension.channel_connectors:
+    class: 'Training\Bundle\UserNamingBundle\Form\Extension\ChannelConnectorsExtension'
+    tags:
+      - { name: form.type_extension, alias: oro_integration_channel_form, extended_type: Oro\Bundle\IntegrationBundle\Form\Type\ChannelType }
+
+  # Integration related services
+  training_user_naming.transport.rest_transport:
+    class: 'Training\Bundle\UserNamingBundle\Provider\Transport\UserNamingTypeTransport'
+#    parent: oro_integration.transport.rest.abstract_transport
+    tags:
+      - { name: oro_integration.transport, type: training_user_naming_rest, channel_type: training_user_naming }
+
+  Training\Bundle\UserNamingBundle\EventListener\UserNamingTypeFormatChange:
+#    class: Training\Bundle\UserNamingBundle\EventListener\UserNamingTypeFormatChange
+    tags:
+      - { name: doctrine.orm.entity_listener, entity: '%training_usernaming.entity.class%', event: preUpdate }
+
+  # message processor
+  Training\Bundle\UserNamingBundle\Async\SyncUserNamingTypeExample:
+    tags:
+      - { name: 'oro_message_queue.client.message_processor' }

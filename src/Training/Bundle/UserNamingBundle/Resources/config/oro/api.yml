@@ -2,29 +2,20 @@ api:
   entity_aliases:
     Training\Bundle\UserNamingBundle\Entity\UserNamingType:
       alias: usernaming_type
-      plural_alias: usernaming_type
+      plural_alias: usernaming_types
 
   entities:
     Training\Bundle\UserNamingBundle\Entity\UserNamingType:
       documentation_resource: '@TrainingUserNamingBundle/Resources/doc/api/userNamingType.md'
-      fields:
-        title:
-          data_type: string
-
-      filters:
-        fields:
-          format:
-            exclude: true
-          id:
-            exclude: true
-          title:
-            exclude: false
       sorters:
         fields:
           title:
             exclude: false
-            property_path: title
-          format:
-            exclude: true
-          id:
-            exclude: true
+      filters:
+        fields:
+          title:
+            exclude: false
+      fields:
+        nameExample:
+          data_type: string
+          meta_property: true

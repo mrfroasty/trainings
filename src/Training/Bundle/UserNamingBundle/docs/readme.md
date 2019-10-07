@@ -66,3 +66,8 @@ Serialize -> convert object into array data
 
 
 ###currency -> table config
+
+
+
+###TODO: 
+> Read Symfony Fundamentails 16 topics used for certification of SF.
